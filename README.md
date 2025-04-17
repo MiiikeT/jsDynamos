@@ -1,6 +1,6 @@
 # jsDynamos
 Grupparbete
-Link to Figma [here] (https://www.figma.com/design/T38Z35ffpnDQ7c4joSTVgj/JS-Dynamos?node-id=0-1&p=f&t=x1xVjQwipK5mQihm-0)
+Link to Figma [here](https://www.figma.com/design/T38Z35ffpnDQ7c4joSTVgj/JS-Dynamos?node-id=0-1&p=f&t=x1xVjQwipK5mQihm-0)
 
 ---
 
