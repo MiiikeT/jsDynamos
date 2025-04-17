@@ -1,5 +1,8 @@
 # jsDynamos
 Grupparbete
+Link to Figma [here] (https://www.figma.com/design/T38Z35ffpnDQ7c4joSTVgj/JS-Dynamos?node-id=0-1&p=f&t=x1xVjQwipK5mQihm-0)
+
+---
 
 #### How to start coding in this project
 
@@ -16,3 +19,6 @@ Before you can push up your branch to this project you need to upstream it to th
 ```git push --set-upstream origin <your-branch-name>```
 2. Continue your git precedures.
 
+---
+Made by Team jsDynamo
+Ali, Jimmy, Johanna, Lisa & Michael
