@@ -8,9 +8,10 @@ Link to Figma [here](https://www.figma.com/design/T38Z35ffpnDQ7c4joSTVgj/JS-Dyna
 
 1. Clone repo: 
 ```git clone https://github.com/MiiikeT/jsDynamos.git```
-2. Create your own branch: 
+2. Double check you are on branch "dev".
+3. Create your own branch: 
 ```git checkout -b <your-branch-name>```
-3. You may now start code into this project.
+4. You may now start code into this project.
 
 #### Publishing your branch
 
@@ -20,5 +21,5 @@ Before you can push up your branch to this project you need to upstream it to th
 2. Continue your git precedures.
 
 ---
-Made by Team jsDynamo
-Ali, Jimmy, Johanna, Lisa & Michael
+Made by Team **jsDynamo**
+*Ali, Jimmy, Johanna, Lisa & Michael*
