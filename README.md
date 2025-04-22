@@ -21,5 +21,5 @@ Before you can push up your branch to this project you need to upstream it to th
 2. Continue your git precedures.
 
 ---
-Made by Team **jsDynamo**
+Made by Team **jsDynamo**<br />
 *Ali, Jimmy, Johanna, Lisa & Michael*
