@@ -5,3 +5,27 @@
     box-sizing: border-box;
 }
 /* CSS-reset */
+
+.userCard:hover {
+    transform: scale(1.05); 
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); 
+    transition: transform 0.3s ease, box-shadow 0.3s ease; 
+  }
+  
+
+.cardButton {
+    height: 19px;
+    width: 50px;
+    background-color: var(--brand-color);
+    border: none;
+    color: var(--white);
+    margin: 2px;
+    opacity: 1;
+    transition: opacity 0.3s ease, cursor 0.3s ease; 
+  }
+  
+  .cardButton:hover {
+    opacity: 0.7; 
+    cursor: pointer; 
+  }
+  
