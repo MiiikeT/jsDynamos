@@ -1,3 +1,28 @@
+/* Variables */
+:root {
+    --black: #0f0e0f;
+    --white: #FAF9F9;
+    --whitecast: #faf9f998; 
+    --brand-color: #7D3D3D;
+    --lightb-color:#DEABAB;
+    --accent-color:#896DA7;
+    --shadow:  0 4px 8px rgba(0, 0, 0, 0.1);
+    --user-card-background: #312E2E26;
+}
+
+@font-face {
+    font-family: BebasNeue;
+    src: url(/assets/fonts/BebasNeue/BebasNeue-Regular.otf);
+}
+
+@font-face {
+    font-family: BebasNeueBold;
+    src: url(/assets/fonts/BebasNeue/BebasNeue-Bold.otf);
+}
+/* Variables */
+
+
+
 /* CSS-reset */
 * {
     margin: 0;
@@ -6,13 +31,87 @@
 }
 /* CSS-reset */
 
+body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-family: BebasNeue,  Arial, Helvetica, sans-serif;
+}
+
+h1 {
+    font-family: BebasNeue,  Arial, Helvetica, sans-serif;
+    text-transform: capitalize;
+    color: var(--brand-color);
+    font-size: 48px;
+    line-height: 1;
+}
+
+h2 {
+    font-family: BebasNeue,  Arial, Helvetica, sans-serif;
+    font-size: 30px;
+    line-height: 1.067;
+}
+
+h3 {
+    font-family: BebasNeue,  Arial, Helvetica, sans-serif;
+    font-size: 24px;
+    line-height: 1.083;
+}
+
+p {
+    font-family: Arial, Helvetica, sans-serif;
+    font-size:18px;
+    line-height: 1.5;
+}
+
+a {
+    font-weight: normal;
+    line-height: 1.5;
+    text-decoration: none;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.userCard {
+    background-color: var(--user-card-background);
+    width: 473px;
+    height: 214px;
+    border-radius: 15px; /* Kan ej tyda radius px i Figman, bekräfta med gruppen */
+    box-shadow: var(--shadow);
+    overflow: hidden;
+    display: grid;
+    grid-template-columns: 1fr 3fr 1fr;
+    grid-template-rows: 1fr 1fr;
+    margin: 15px;
+    padding: 15px;
+}
 .userCard:hover {
     transform: scale(1.05); 
     box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); 
     transition: transform 0.3s ease, box-shadow 0.3s ease; 
-  }
-  
+}
+.userVisual {
+    grid-row: 1;
+    grid-column: 1;
+    margin: 10px;
+}
 
+.userImg-container {
+    background-color: #D9D9D9;
+    border-radius: 50%;
+    width: 61px;
+    height: 61px;
+}
+.userName {
+    margin-top: 5px;
+}
+
+.buttonContainer {
+    grid-row: 1;
+    grid-column: 3;
+    display: flex;
+    flex-direction: column;
+    margin: 10px;
+}
 .cardButton {
     height: 19px;
     width: 50px;
@@ -28,4 +127,35 @@
     opacity: 0.7; 
     cursor: pointer; 
   }
-  
+.userInfo {
+    grid-row: 2;
+    grid-column: 2;
+    background-color: var(--brand-color);
+    color: var(--white);
+    margin: 5px;
+}
+
+@media only screen and (max-width: 480px) {
+
+    h1 {
+        font-size: 30px;
+        line-height: 1.067;
+    }
+    
+    h2 {
+        font-size: 24px;
+        line-height: 1.083;
+    }
+    
+    h3 {
+        font-size: 20px;
+        line-height: 1.5;
+    }
+    
+    p {
+        font-size:16px;
+        line-height: 1.6;
+    }
+
+
+}
