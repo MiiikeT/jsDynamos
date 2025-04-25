@@ -32,7 +32,10 @@
 
 body {
     font-family: BebasNeue,  Arial, Helvetica, sans-serif;
+    background-image: url(/images/bg2.jpg);
+    object-fit:none;
 } 
+
 
 h1 {
     font-family: BebasNeue,  Arial, Helvetica, sans-serif;
@@ -67,6 +70,95 @@ a {
     font-family: Arial, Helvetica, sans-serif;
 }
 
+a:hover {
+    text-decoration: underline;
+    color: var(--accent-color);
+}
+
+header {
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.logo {
+    padding: 5vh;
+    background-color: var(--black);
+    text-shadow: 0 0 6px #000000, 0 0 5px #000000;
+}
+
+footer {
+    background-color: var(--black);
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    align-items: center;
+    font-size: 16px;
+    line-height: 1;
+    gap: 5px;
+    margin-top: 30px;
+    padding: 5vh;
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+}  
+
+footer h3 {
+    padding: 10px;
+    color: var(--white);
+    font-weight: normal;
+}
+
+footer i {
+    color: var(--brand-color);
+    text-shadow: 0 0 6px #000000, 0 0 5px #000000;
+    padding: 10px;
+}
+
+footer a {
+    color: var(--white);
+    font-size: 16px;
+    text-shadow: 0 0 1px #000000, 0 0 1px #000000;
+    padding-top: 15px;
+}
+
+footer a:hover {
+    color: var(--brand-color);
+    text-shadow: 0 0 6px #000000, 0 0 5px #000000;
+    font-size: 16px;
+}
+
+
+footer p {
+    font-size: 14px;
+    color: var(--white);
+    text-shadow: 0 0 6px #000000, 0 0 5px #000000;
+}
+
+.footerContainer {
+    display: flex;
+    flex-direction: row;
+    column-gap: 7vh;
+    margin-bottom: 1vh;
+}
+
+.footerContainer i {
+    color: var(--accent-color);
+    text-shadow: 0 0 6px #000000, 0 0 5px #000000;
+    font-size: 40px;
+    cursor: pointer;
+}
+
+.footerContainer i:hover {
+    color: var(--white);
+    text-shadow: 0 0 6px var(--accent-color), 0 0 5px var(--brand-color);
+}
+
+.footerText  {
+    gap: 5px;
+    margin-bottom: 4vh;
+    font-size: 16px;
+}
 
 
 
@@ -78,19 +170,67 @@ a {
     }
     
     h2 {
-        font-size: 24px;
+        font-size: 26px;
         line-height: 1.083;
     }
     
     h3 {
-        font-size: 20px;
+        font-size: 22px;
         line-height: 1.5;
     }
     
     p {
-        font-size:16px;
+        font-size: 16px;
         line-height: 1.6;
     }
 
+
+    header {
+        margin-bottom: 10px;
+    }
+
+    .logo {
+        padding: 2vh;
+    }
+
+    footer {
+        font-size: 16px;
+        gap: 5px;
+        margin-top: 15px;
+        padding: 3vh;
+    }  
+
+    footer i {
+        padding: 10px;
+    }
+
+    footer a {
+        gap: 3px;
+    }
+
+    footer a:hover {
+        font-size: 14px;
+    }
+
+    footer p {
+        font-size: 14px;
+        font-weight: 400;
+        padding-top: 15px;
+        gap: 3px;
+    }
+
+    .footerContainer {
+        display: flex;
+        color:var(--lightb-color);
+        flex-direction: row;
+        column-gap: 4vh;
+        row-gap: 4px;
+        margin-bottom: 1vh;
+    }
+
+
+    .footerContainer i {
+        font-size: 36px;
+    }
 
 } 
