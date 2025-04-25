@@ -213,12 +213,13 @@ footer p {
     margin: 2px;
     opacity: 1;
     transition: opacity 0.3s ease, cursor 0.3s ease; 
-  }
-  
-  .cardButton:hover {
+}
+
+.cardButton:hover {
     opacity: 0.7; 
     cursor: pointer; 
-  }
+}
+
 .userInfo {
     grid-row: 2;
     grid-column: 2;
