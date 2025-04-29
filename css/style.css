@@ -135,6 +135,41 @@ a {
     margin: 5px;
 }
 
+.dropdownBox {
+    display: none;
+    position: absolute; 
+    width: 100%; 
+    max-width: 600px;
+    border: 1px solid var(--accent-color);
+    background-color: var(--lightb-color);
+    border-radius: 5px;
+    padding: 10px;
+    overflow-y: auto;
+    max-height: 300px;
+    z-index: 1000; /* Så att den visas över andra element */
+  }
+  
+
+
+.post {
+    margin-bottom: 10px;
+    border-bottom: 1px solid var(--accent-color);
+    padding-bottom: 10px;
+}
+
+.post h3 {
+    margin: 0;
+    font-size: 20px;
+    color: var(--brand-color);
+}
+
+.post p {
+    margin: 5px 0;
+    font-size: 16px;
+    color: var(--black);
+}
+
+
 @media only screen and (max-width: 480px) {
 
     h1 {
