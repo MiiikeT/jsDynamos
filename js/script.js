@@ -23,7 +23,7 @@ function getUserInfo() {
           <div class="onClickInfo">
             <div class="buttonContainer">
               <button class="cardButton" onclick="toggleDropdown(this.closest('.userCard'))">Post</button>
-              <button class="cardButton" onclick="getToDos()">ToDo</button>
+              <button class="cardButton" onclick="getToDos(this)">ToDo</button>
             </div>
             <p class="userUserName">${user.username}</p>
             <p class="userEmail">${user.email}</p>
@@ -115,32 +115,122 @@ function toggleDropdown(cardElement) {
     fillDropdownWithPostsAndComments(userId, dropdownBox); // Skickar med rätt box
   }
 }
-// function toggleDropdown(cardElement) {
-//   let dropdownBox = document.querySelector('.dropdownBox');
 
-//   if (!dropdownBox) {
-//     console.error('Dropdown-boxen hittades inte.');
-//     return;
-//   }
+function getToDos(buttonElement) {
+  const cardElement = buttonElement.closest('.userCard');
+  const userId = cardElement.querySelector('.userId').textContent;
+  // alert(`ToDo-funktion för användare med ID: ${userId}`); 
 
-//   // Om dropdown redan är synlig och samma kort klickas, göm den
-//   if (dropdownBox.style.display === 'block' && dropdownBox.dataset.card === cardElement.dataset.card) {
-//     dropdownBox.style.display = 'none';
-//     return;
-//   }
+  fetch(`https://jsonplaceholder.typicode.com/todos/?userId=${userId}`)
+     .then(response => response.json())
+     .then(todos => {
+       todoList.innerHTML = '';
+       todoDetails.innerHTML = '';
 
-//   // Fyll dropdown-boxen med posts och kommentarer
-//   let userId = cardElement.querySelector('.userId').textContent;
-//   fillDropdownWithPostsAndComments(userId);
+       todos.forEach(todo => {
+         const li = document.createElement('li');
+         li.textContent = `Todo ID: ${todo.id}`;
+         li.style.cursor = 'pointer';
 
-//   // Positionera dropdown-boxen
-//   const cardRect = cardElement.getBoundingClientRect();
+         li.addEventListener('click', () => {
+           showTodoDetails(todo);
+         });
 
-//   dropdownBox.dataset.card = cardElement.dataset.card;
-// }
+         todoList.appendChild(li);
+       });
+     })
+     .catch(error => {
+       console.error('Fel vid hämtning av todos:', error);
+     });
 
-function getToDos() {
-  alert("ToDo-funktion ännu ej implementerad!"); // Placeholder för ToDo-funktion
+
 }
+
+function showTodoDetails(todo) {
+  todoDetails.innerHTML = `
+    <h3>Detaljer för Todo:</h3>
+    <p><strong>ID:</strong> ${todo.id}</p>
+    <p><strong>Titel:</strong> ${todo.title}</p>
+    <p><strong>Slutförd:</strong> ${todo.completed ? 'Ja' : 'Nej'}</p>
+  `;
+}
+// AliTest
+// const userSelect = document.getElementById('userSelect');
+// const userInfo = document.getElementById('userInfo');
+// const todoList = document.getElementById('todoList');
+// const todoDetails = document.getElementById('todoDetails');
+
+// let allUsers = []; 
+
+
+// fetch('https://jsonplaceholder.typicode.com/users')
+//   .then(response => response.json())
+//   .then(users => {
+//     allUsers = users; 
+//     users.forEach(user => {
+//       const option = document.createElement('option');
+//       option.value = user.id;
+//       option.textContent = user.name;
+//       userSelect.appendChild(option);
+//     });
+//   })
+
+
+  // .catch(error => {
+  //   console.error('Fel vid hämtning av användare:', error);
+  // });
+
+
+
+// userSelect.addEventListener('change', () => {
+//   const selectedUser = userSelect.value;
+
+//   // if (!selectedUser) {
+//   //   userInfo.innerHTML = '';
+//   //   todoList.innerHTML = '';
+//   //   todoDetails.innerHTML = '';
+//   //   return;
+//   // }
+
+  
+//   const user = allUsers.find(u => u.id == selectedUser);
+
+//  //visa användar infon//
+
+
+
+  
+//   fetch(`https://jsonplaceholder.typicode.com/todos/?userId=${selectedUser}`)
+//     .then(response => response.json())
+//     .then(todos => {
+//       todoList.innerHTML = '';
+//       todoDetails.innerHTML = '';
+
+//       todos.forEach(todo => {
+//         const li = document.createElement('li');
+//         li.textContent = `Todo ID: ${todo.id}`;
+//         li.style.cursor = 'pointer';
+
+//         li.addEventListener('click', () => {
+//           showTodoDetails(todo);
+//         });
+
+//         todoList.appendChild(li);
+//       });
+//     })
+//     .catch(error => {
+//       console.error('Fel vid hämtning av todos:', error);
+//     });
+// });
+
+
+// function showTodoDetails(todo) {
+//   todoDetails.innerHTML = `
+//     <h3>Detaljer för Todo:</h3>
+//     <p><strong>ID:</strong> ${todo.id}</p>
+//     <p><strong>Titel:</strong> ${todo.title}</p>
+//     <p><strong>Slutförd:</strong> ${todo.completed ? 'Ja' : 'Nej'}</p>
+//   `;
+// }
 
 getUserInfo();
