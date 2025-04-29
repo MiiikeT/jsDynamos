@@ -72,6 +72,10 @@ function showTodoDetails(todo) {
     <h3>Detaljer för Todo:</h3>
     <p><strong>ID:</strong> ${todo.id}</p>
     <p><strong>Titel:</strong> ${todo.title}</p>
-    <p><strong>Slutförd:</strong> ${todo.completed ? 'Ja' : 'Nej'}</p>
+    <p><strong>Slutförd:</strong> ${todo.completed ? '✅' : '❌'}</p>
   `;
 }
+
+
+
+
