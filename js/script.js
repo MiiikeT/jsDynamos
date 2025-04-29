@@ -16,8 +16,8 @@ function getUserInfo() {
         userCard.innerHTML = `
           <div class="userVisual">
             <div class="userImg-container"></div>
-            <p class="userName">${user.name}</p>
             <p class="userId">${user.id}</p>
+            <p class="userName">${user.name}</p>
           </div>
           <div class="onClickInfo"></div>
         `;
@@ -28,8 +28,10 @@ function getUserInfo() {
               <button class="cardButton" onclick="getPosts()">Post</button>
               <button class="cardButton" onclick="getToDos()">ToDo</button>
             </div>
+            <div class="userInfo">
             <p class="userUserName">${user.username}</p>
             <p class="userEmail">${user.email}</p>
+            </div>
           `;
         });
 
