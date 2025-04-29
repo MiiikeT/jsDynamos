@@ -39,8 +39,7 @@ function getUserInfo() {
     });
 }
 
-function fillDropdownWithPostsAndComments(userId) {
-  let dropdownBox = document.querySelector('.dropdownBox');
+function fillDropdownWithPostsAndComments(userId, dropdownBox) {
   
   // Rensa tidigare innehåll
   dropdownBox.innerHTML = '';
@@ -59,6 +58,7 @@ function fillDropdownWithPostsAndComments(userId) {
         let postElement = document.createElement('div');
         postElement.classList.add('post');
         postElement.innerHTML = `
+          <p>${post.id}</p>
           <h3>${post.title}</h3>
           <p>${post.body}</p>
         `;
@@ -94,28 +94,50 @@ function fillDropdownWithPostsAndComments(userId) {
 }
 
 function toggleDropdown(cardElement) {
-  let dropdownBox = document.querySelector('.dropdownBox');
+  const dropdownBox = cardElement.querySelector('.dropdownBox'); // Lokal istället för global querySelector
 
   if (!dropdownBox) {
-    console.error('Dropdown-boxen hittades inte.');
+    console.error('Dropdown-boxen hittades inte i kortet.');
     return;
   }
 
-  // Om dropdown redan är synlig och samma kort klickas, göm den
-  if (dropdownBox.style.display === 'block' && dropdownBox.dataset.card === cardElement.dataset.card) {
-    dropdownBox.style.display = 'none';
-    return;
+  const isVisible = dropdownBox.style.display === 'block';
+
+  // Nytt: Stäng alla andra dropdowns först (om du bara vill ha en öppen åt gången)
+  document.querySelectorAll('.dropdownBox').forEach(box => {
+    box.style.display = 'none';
+  });
+
+  if (isVisible) {
+    dropdownBox.style.display = 'none'; // Toggle-stäng om samma kort
+  } else {
+    const userId = cardElement.querySelector('.userId').textContent;
+    fillDropdownWithPostsAndComments(userId, dropdownBox); // Skickar med rätt box
   }
-
-  // Fyll dropdown-boxen med posts och kommentarer
-  let userId = cardElement.querySelector('.userId').textContent;
-  fillDropdownWithPostsAndComments(userId);
-
-  // Positionera dropdown-boxen
-  const cardRect = cardElement.getBoundingClientRect();
-
-  dropdownBox.dataset.card = cardElement.dataset.card;
 }
+// function toggleDropdown(cardElement) {
+//   let dropdownBox = document.querySelector('.dropdownBox');
+
+//   if (!dropdownBox) {
+//     console.error('Dropdown-boxen hittades inte.');
+//     return;
+//   }
+
+//   // Om dropdown redan är synlig och samma kort klickas, göm den
+//   if (dropdownBox.style.display === 'block' && dropdownBox.dataset.card === cardElement.dataset.card) {
+//     dropdownBox.style.display = 'none';
+//     return;
+//   }
+
+//   // Fyll dropdown-boxen med posts och kommentarer
+//   let userId = cardElement.querySelector('.userId').textContent;
+//   fillDropdownWithPostsAndComments(userId);
+
+//   // Positionera dropdown-boxen
+//   const cardRect = cardElement.getBoundingClientRect();
+
+//   dropdownBox.dataset.card = cardElement.dataset.card;
+// }
 
 function getToDos() {
   alert("ToDo-funktion ännu ej implementerad!"); // Placeholder för ToDo-funktion
