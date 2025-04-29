@@ -166,7 +166,7 @@ header {
     grid-column: 1 / 3;
     background-color: var(--brand-color);
     color: var(--white);
-    margin: 5px;
+    padding: 5px;
 }
 
 .dropdownBox {
