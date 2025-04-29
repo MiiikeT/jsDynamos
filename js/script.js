@@ -113,10 +113,6 @@ function toggleDropdown(cardElement) {
 
   // Positionera dropdown-boxen
   const cardRect = cardElement.getBoundingClientRect();
-  // dropdownBox.style.position = 'absolute'; NOT NEEDED
-  // dropdownBox.style.top = `${window.scrollY + cardRect.bottom}px`;
-  // dropdownBox.style.left = `${cardRect.left}px`;
-  // dropdownBox.style.width = `${cardRect.width}px`;
 
   dropdownBox.dataset.card = cardElement.dataset.card;
 }
