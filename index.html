@@ -1,13 +1,23 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="sv">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="./css/style.css">
-    <script src="./js/script.js" defer></script>
-    <title>F25D - jsDynamos</title>
+  <meta charset="UTF-8">
+  <title>Todo per användare</title>
 </head>
 <body>
-    
+  <h1>Välj en användare:</h1>
+
+  <select id="userSelect">
+    <option value="">-- Välj en användare --</option>
+  </select>
+
+  <div id="userInfo"></div> 
+
+  <h2>Todos:</h2>
+  <ul id="todoList"></ul>
+
+  <div id="todoDetails"></div>
+
+  <script src="script.js"></script>
 </body>
 </html>
