@@ -2,7 +2,7 @@ function getUserInfo() {
   fetch('https://jsonplaceholder.typicode.com/users')
     .then(response => {
       if (!response.ok) {
-        throw new Error("Network response was not OK");
+        throw new Error("Unable to fetch users.");
       }
       return response.json();
     })
@@ -20,18 +20,22 @@ function getUserInfo() {
             <p class="userName">${user.name}</p>
             <p class="userId">${user.id}</p>
           </div>
-          <div class="onClickInfo">
-            <div class="buttonContainer">
-              <button class="cardButton" onclick="toggleDropdown(this.closest('.userCard'))">Post</button>
-              <button class="cardButton" onclick="getToDos()">ToDo</button>
-            </div>
-            <div class="userInfo">
-            <p class="userUserName">${user.username}</p>
-            <p class="userEmail">${user.email}</p>
-            </div>
-          </div>
+          <div class="onClickInfo"></div>
           <div class="dropdownBox"></div>
         `;
+
+        userCard.addEventListener("click", function () { //onclick info populeras nu vid klick av user card
+          this.querySelector(".onClickInfo").innerHTML = `
+              <div class="buttonContainer">
+                <button class="cardButton" onclick="toggleDropdown(this.closest('.userCard'))">Post</button>
+                <button class="cardButton" id="todo" onclick="getToDos(this.closest('.userCard'), ${user.id})">ToDo</button>
+              </div>
+              <div class="userInfo">
+                <p class="userUserName">${user.username}</p>
+                <p class="userEmail">${user.email}</p>
+              </div>
+              `;
+        });
 
         userList.appendChild(userCard);
       });
@@ -50,7 +54,7 @@ function fillDropdownWithPostsAndComments(userId, dropdownBox) {
   fetch(`https://jsonplaceholder.typicode.com/posts?userId=${userId}`)
     .then(response => {
       if (!response.ok) {
-        throw new Error('Kunde inte hämta posts.');
+        throw new Error('Unable to fetch posts.');
       }
       return response.json();
     })
@@ -69,19 +73,19 @@ function fillDropdownWithPostsAndComments(userId, dropdownBox) {
         fetch(`https://jsonplaceholder.typicode.com/comments?postId=${post.id}`)
           .then(response => {
             if (!response.ok) {
-              throw new Error('Kunde inte hämta kommentarer.');
+              throw new Error('Unable to fetch comments.');
             }
             return response.json();
           })
           .then(comments => {
             comments.forEach(comment => {
               let commentElement = document.createElement('p');
-              commentElement.textContent = `Kommentar: ${comment.body}`;
+              commentElement.textContent = `Comment: ${comment.body}`;
               postElement.appendChild(commentElement);
             });
           })
           .catch(e => {
-            console.error('Fel vid hämtning av kommentarer:', e);
+            console.error('Unable to fetch comments:', e);
           });
 
         dropdownBox.appendChild(postElement);
@@ -91,7 +95,7 @@ function fillDropdownWithPostsAndComments(userId, dropdownBox) {
       dropdownBox.style.display = 'block';
     })
     .catch(e => {
-      console.error('Fel vid hämtning av posts:', e);
+      console.error('Unable to fetch posts:', e);
     });
 }
 
@@ -99,7 +103,7 @@ function toggleDropdown(cardElement) {
   const dropdownBox = cardElement.querySelector('.dropdownBox'); // Lokal istället för global querySelector
 
   if (!dropdownBox) {
-    console.error('Dropdown-boxen hittades inte i kortet.');
+    console.error('Dropdown-box was not found.');
     return;
   }
 
@@ -117,32 +121,45 @@ function toggleDropdown(cardElement) {
     fillDropdownWithPostsAndComments(userId, dropdownBox); // Skickar med rätt box
   }
 }
-// function toggleDropdown(cardElement) {
-//   let dropdownBox = document.querySelector('.dropdownBox');
 
-//   if (!dropdownBox) {
-//     console.error('Dropdown-boxen hittades inte.');
-//     return;
-//   }
 
-//   // Om dropdown redan är synlig och samma kort klickas, göm den
-//   if (dropdownBox.style.display === 'block' && dropdownBox.dataset.card === cardElement.dataset.card) {
-//     dropdownBox.style.display = 'none';
-//     return;
-//   }
-
-//   // Fyll dropdown-boxen med posts och kommentarer
-//   let userId = cardElement.querySelector('.userId').textContent;
-//   fillDropdownWithPostsAndComments(userId);
-
-//   // Positionera dropdown-boxen
-//   const cardRect = cardElement.getBoundingClientRect();
-
-//   dropdownBox.dataset.card = cardElement.dataset.card;
-// }
-
-function getToDos() {
-  alert("ToDo-funktion ännu ej implementerad!"); // Placeholder för ToDo-funktion
-}
 
 getUserInfo();
+
+function getToDos(cardElement, userId) {
+  const dropdownBox = cardElement.querySelector('.dropdownBox');
+  const isVisible = dropdownBox.style.display === "block";
+
+  // Close all other dropdowns
+  document.querySelectorAll('.dropdownBox').forEach(box => box.style.display = 'none');
+
+  if (isVisible) {
+    dropdownBox.style.display = "none";
+  } else {
+    dropdownBox.innerHTML = "";
+    dropdownBox.style.display = "block";
+
+    fetch(`https://jsonplaceholder.typicode.com/todos?userId=${userId}`)
+      .then((res) => {
+        if (!res.ok) {
+          throw new Error("Unable to fetch todos.");
+        }
+        return res.json();
+      })
+      .then((todos) => {
+        todos.forEach((todo) => {
+          let todoElement = document.createElement("div");
+          todoElement.classList.add("post");
+          todoElement.innerHTML = `
+            <p>${todo.id}</p>
+            <h3>${todo.title}</h3>
+            <p>${todo.completed ? "✅" : "❌"}</p>
+          `;
+          dropdownBox.appendChild(todoElement);
+        });
+      })
+      .catch(e => {
+        console.error("Todo fetch error:", e);
+      });
+  }
+}
