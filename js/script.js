@@ -2,7 +2,7 @@ function getUserInfo() {
   fetch('https://jsonplaceholder.typicode.com/users')
     .then(response => {
       if (!response.ok) {
-        throw new Error("Network response was not OK");
+        throw new Error("Kunde inte hämta användare."); //ändrat till svenska
       }
       return response.json();
     })
@@ -20,18 +20,22 @@ function getUserInfo() {
             <p class="userName">${user.name}</p>
             <p class="userId">${user.id}</p>
           </div>
-          <div class="onClickInfo">
-            <div class="buttonContainer">
-              <button class="cardButton" onclick="toggleDropdown(this.closest('.userCard'))">Post</button>
-              <button class="cardButton" onclick="getToDos()">ToDo</button>
-            </div>
-            <div class="userInfo">
-            <p class="userUserName">${user.username}</p>
-            <p class="userEmail">${user.email}</p>
-            </div>
-          </div>
+          <div class="onClickInfo"></div>
           <div class="dropdownBox"></div>
         `;
+
+        userCard.addEventListener("click", function () { //onclick info populeras nu vid klick av user card
+          this.querySelector(".onClickInfo").innerHTML = `
+              <div class="buttonContainer">
+                <button class="cardButton" onclick="toggleDropdown(this.closest('.userCard'))">Post</button>
+                <button class="cardButton" onclick="getToDos()">ToDo</button>
+              </div>
+              <div class="userInfo">
+                <p class="userUserName">${user.username}</p>
+                <p class="userEmail">${user.email}</p>
+              </div>
+              `;
+        });
 
         userList.appendChild(userCard);
       });
