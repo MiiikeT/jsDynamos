@@ -25,8 +25,10 @@ function getUserInfo() {
               <button class="cardButton" onclick="toggleDropdown(this.closest('.userCard'))">Post</button>
               <button class="cardButton" onclick="getToDos()">ToDo</button>
             </div>
+            <div class="userInfo">
             <p class="userUserName">${user.username}</p>
             <p class="userEmail">${user.email}</p>
+            </div>
           </div>
           <div class="dropdownBox"></div>
         `;
