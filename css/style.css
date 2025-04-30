@@ -183,8 +183,8 @@ header {
     /* z-index: 1000; Så att den visas över andra element  */
     grid-row: 2;
     grid-column: 1 / 4;
-  }
-  
+}
+
 
 
 .post {
