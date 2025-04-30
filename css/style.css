@@ -6,7 +6,7 @@
     --brand-color: #7D3D3D;
     --lightb-color:#DEABAB;
     --accent-color:#896DA7;
-    --shadow:  0 4px 8px rgba(0, 0, 0, 0.1);
+    --shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     --user-card-background: #312E2E26;
 }
 
@@ -36,8 +36,8 @@ body {
     flex-direction: column;
     align-items: center;
     font-family: BebasNeue,  Arial, Helvetica, sans-serif;
-    background-image: url(/images/bg2.jpg);
-    object-fit:none;
+    background-color: #896DA7;
+    object-fit:cover;
 }
 
 
@@ -74,21 +74,99 @@ a {
     font-family: Arial, Helvetica, sans-serif;
 }
 
-
 a:hover {
     text-decoration: underline;
     color: var(--accent-color);
 }
 
 header {
+    width: 100%;
     margin-bottom: 20px;
-    text-align: center;
+    background-color: var(--black);
 }
 
-.logo {
-    padding: 5vh;
-    background-color: var(--black);
-    text-shadow: 0 0 6px #000000, 0 0 5px #000000;
+.headerContainer {
+    display: flex;
+    justify-content: center;
+    padding: 20px;
+}
+
+
+.logoImage {
+width: 15%;
+}
+
+.userCard {
+    background-color: var(--user-card-background);
+    width: 473px;
+    height: 214px;
+    border-radius: 15px; /* Kan ej tyda radius px i Figman, bekräfta med gruppen */
+    box-shadow: var(--shadow);
+    overflow: hidden;
+    display: grid;
+    grid-template-columns: 1fr 3fr 1fr;
+    grid-template-rows: 1fr 1fr;
+    margin: 15px;
+    padding: 15px;
+}
+
+.userCard:hover {
+    transform: scale(1.05); 
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); 
+    transition: transform 0.3s ease, box-shadow 0.3s ease; 
+}
+
+.userVisual {
+    grid-row: 1;
+    grid-column: 1;
+    margin: 10px;
+}
+
+a:hover {
+    text-decoration: underline;
+    color: var(--accent-color);
+}
+
+.userImg-container {
+    background-color: #D9D9D9;
+    border-radius: 50%;
+    width: 61px;
+    height: 61px;
+}
+
+.userName {
+    margin-top: 5px;
+}
+
+.buttonContainer {
+    grid-row: 1;
+    grid-column: 3;
+    display: flex;
+    flex-direction: column;
+    margin: 10px;
+}
+.cardButton {
+    height: 19px;
+    width: 50px;
+    background-color: var(--brand-color);
+    border: none;
+    color: var(--white);
+    margin: 2px;
+    opacity: 1;
+    transition: opacity 0.3s ease, cursor 0.3s ease; 
+}
+
+.cardButton:hover {
+    opacity: 0.7; 
+    cursor: pointer; 
+}
+
+.userInfo {
+    grid-row: 2;
+    grid-column: 2;
+    background-color: var(--brand-color);
+    color: var(--white);
+    margin: 5px;
 }
 
 
@@ -145,12 +223,12 @@ header {
     margin: 2px;
     opacity: 1;
     transition: opacity 0.3s ease, cursor 0.3s ease; 
-  }
-  
+}
+
   .cardButton:hover {
     opacity: 0.7; 
     cursor: pointer; 
-  }
+}
 
 .userInfo {
     grid-row: 2;
@@ -208,7 +286,6 @@ footer {
     gap: 5px;
     margin-top: 30px;
     padding: 5vh;
-    position: fixed;
     left: 0;
     bottom: 0;
     width: 100%;
@@ -239,7 +316,6 @@ footer a:hover {
     font-size: 16px;
 }
 
-
 footer p {
     font-size: 14px;
     color: var(--white);
@@ -250,7 +326,7 @@ footer p {
     display: flex;
     flex-direction: row;
     column-gap: 7vh;
-    margin-bottom: 1vh;
+    margin-bottom: 10px;
 }
 
 .footerContainer i {
@@ -269,6 +345,7 @@ footer p {
     gap: 5px;
     margin-bottom: 4vh;
     font-size: 16px;
+}
 
 @media only screen and (max-width: 480px) {
 
@@ -298,27 +375,26 @@ footer p {
         margin-bottom: 10px;
     }
 
-    .logo {
-        padding: 2vh;
+    .logoImage {
+        padding: 2px;
+        width: 30%;
     }
+
 
     footer {
         font-size: 16px;
         gap: 5px;
-        margin-top: 15px;
+        margin-top: 10px;
         padding: 3vh;
     }  
 
     footer i {
         padding: 10px;
+    
     }
 
     footer a {
         gap: 3px;
-    }
-
-    footer a:hover {
-        font-size: 14px;
     }
 
     footer p {
@@ -339,10 +415,16 @@ footer p {
 
 
     .footerContainer i {
-        font-size: 36px;
+        font-size: 30px;
     }
 
-} 
+    
+    .footerText  {
+        gap: 5px;
+        margin-bottom: 4vh;
+        font-size: 14px;
+    }
+    
 
 }
 
