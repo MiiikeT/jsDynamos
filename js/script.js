@@ -115,44 +115,116 @@ function toggleDropdown(cardElement) {
     fillDropdownWithPostsAndComments(userId, dropdownBox); // Skickar med rätt box
   }
 }
-// ALIS KOD BÖRJAR HÄR
-function getToDos(buttonElement) {
-  const cardElement = buttonElement.closest('.userCard');
-  const userId = cardElement.querySelector('.userId').textContent;
-  // alert(`ToDo-funktion för användare med ID: ${userId}`); 
 
-  fetch(`https://jsonplaceholder.typicode.com/todos/?userId=${userId}`)
-     .then(response => response.json())
-     .then(todos => {
-       todoList.innerHTML = '';
-       todoDetails.innerHTML = '';
+function createUserCard(user) {
+  const userCard = document.createElement("div");
+  userCard.classList.add("userCard");
 
-       todos.forEach(todo => {
-         const li = document.createElement('li');
-         li.textContent = `Todo ID: ${todo.id}`;
-         li.style.cursor = 'pointer';
+  const userVisual = document.createElement("div");
+  userVisual.classList.add("userVisual");
 
-         li.addEventListener('click', () => {
-           showTodoDetails(todo);
-         });
+  const imgContainer = document.createElement("div");
+  imgContainer.classList.add("userImg-container");
 
-         todoList.appendChild(li);
-       });
-     })
-     .catch(error => {
-       console.error('Fel vid hämtning av todos:', error);
-     });
+  const userName = document.createElement("p");
+  userName.classList.add("userName");
+  userName.textContent = user.name;
 
+  imgContainer.appendChild(userName);
+  userVisual.appendChild(imgContainer);
+  userCard.appendChild(userVisual);
 
-}
+  const buttonContainer = document.createElement("div");
+  buttonContainer.classList.add("buttonContainer");
 
-function showTodoDetails(todo) {
-  todoDetails.innerHTML = `
-    <h3>Detaljer för Todo:</h3>
-    <p><strong>ID:</strong> ${todo.id}</p>
-    <p><strong>Titel:</strong> ${todo.title}</p>
-    <p><strong>Slutförd:</strong> ${todo.completed ? 'Ja' : 'Nej'}</p>
+  const postsButton = document.createElement("button");
+  postsButton.classList.add("cardButton");
+  postsButton.textContent = "Posts";
+
+  const todoButton = document.createElement("button");
+  todoButton.classList.add("cardButton");
+  todoButton.textContent = "ToDo";
+
+  buttonContainer.appendChild(postsButton);
+  buttonContainer.appendChild(todoButton);
+  userCard.appendChild(buttonContainer);
+
+  const userInfo = document.createElement("div");
+  userInfo.classList.add("userInfo");
+  userInfo.innerHTML = `
+    <h3>${user.username}</h3>
+    <p>Email: ${user.email}</p>
+    <p>Phone: ${user.phone}</p>
+    <p>Website: ${user.website}</p>
   `;
+  userCard.appendChild(userInfo);
+
+  const dropdownBox = document.createElement("div");
+  dropdownBox.classList.add("dropdownBox");
+  userCard.appendChild(dropdownBox);
+
+  let activeType = null; 
+  postsButton.addEventListener("click", () => {
+    if (dropdownBox.style.display === "block" && activeType === "posts") {
+      dropdownBox.style.display = "none";
+      activeType = null;
+    } else {
+      dropdownBox.innerHTML = "";
+      dropdownBox.style.display = "block";
+      activeType = "posts";
+
+      fetch(`https://jsonplaceholder.typicode.com/posts?userId=${user.id}`)
+      .then((res) => res.json())
+      .then((posts) => {
+        posts.forEach((post) => {
+          let postElement = document.createElement("div");
+          postElement.classList.add("post");
+          postElement.innerHTML = `
+            <p>${post.id}</p>
+            <h3>${post.title}</h3>
+            <p>${post.body}</p>
+          `;
+          dropdownBox.appendChild(postElement);
+        });
+      });
+  }
+});
+
+  todoButton.addEventListener("click", () => {
+    if (dropdownBox.style.display === "block" && activeType === "todo") {
+      dropdownBox.style.display = "none";
+      activeType = null;
+    } else {
+      dropdownBox.innerHTML = "";
+      dropdownBox.style.display = "block";
+      activeType = "todo";
+
+      fetch(`https://jsonplaceholder.typicode.com/todos?userId=${user.id}`)
+        .then((res) => res.json())
+        .then((todos) => {
+          todos.forEach((todo) => {
+            let todoElement = document.createElement("div");
+            todoElement.classList.add("post");
+            todoElement.innerHTML = `
+              <p>${todo.id}</p>
+              <h3>${todo.title}</h3>
+              <p>${todo.completed ? "✅" : "❌"}</p>
+            `;
+            dropdownBox.appendChild(todoElement);
+          });
+        });
+    }
+  });
+
+  return userCard;
 }
 
-getUserInfo();
+fetch("https://jsonplaceholder.typicode.com/users")
+  .then((res) => res.json())
+  .then((users) => {
+    const userList = document.querySelector(".userList");
+    users.forEach((user) => {
+      const card = createUserCard(user);
+      userList.appendChild(card);
+    });
+  });
