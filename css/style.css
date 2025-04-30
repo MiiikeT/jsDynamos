@@ -312,15 +312,6 @@ footer p {
         padding: 2vh;
     }
 
-/* userCard in Mobile */
-.userCard {
-    background-color: red;
-}
-.userImg-container {
-    display: none;
-}
-/* /userCard in Mobile */
-
     footer {
         font-size: 16px;
         gap: 5px;
