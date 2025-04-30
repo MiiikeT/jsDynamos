@@ -121,32 +121,45 @@ function toggleDropdown(cardElement) {
     fillDropdownWithPostsAndComments(userId, dropdownBox); // Skickar med rätt box
   }
 }
-// function toggleDropdown(cardElement) {
-//   let dropdownBox = document.querySelector('.dropdownBox');
 
-//   if (!dropdownBox) {
-//     console.error('Dropdown-boxen hittades inte.');
-//     return;
-//   }
 
-//   // Om dropdown redan är synlig och samma kort klickas, göm den
-//   if (dropdownBox.style.display === 'block' && dropdownBox.dataset.card === cardElement.dataset.card) {
-//     dropdownBox.style.display = 'none';
-//     return;
-//   }
-
-//   // Fyll dropdown-boxen med posts och kommentarer
-//   let userId = cardElement.querySelector('.userId').textContent;
-//   fillDropdownWithPostsAndComments(userId);
-
-//   // Positionera dropdown-boxen
-//   const cardRect = cardElement.getBoundingClientRect();
-
-//   dropdownBox.dataset.card = cardElement.dataset.card;
-// }
-
-function getToDos() {
-  alert("ToDo-funktion ännu ej implementerad!"); // Placeholder för ToDo-funktion
-}
 
 getUserInfo();
+
+function getToDos(cardElement, userId) {
+  const dropdownBox = cardElement.querySelector('.dropdownBox');
+  const isVisible = dropdownBox.style.display === "block";
+
+  // Close all other dropdowns
+  document.querySelectorAll('.dropdownBox').forEach(box => box.style.display = 'none');
+
+  if (isVisible) {
+    dropdownBox.style.display = "none";
+  } else {
+    dropdownBox.innerHTML = "";
+    dropdownBox.style.display = "block";
+
+    fetch(`https://jsonplaceholder.typicode.com/todos?userId=${userId}`)
+      .then((res) => {
+        if (!res.ok) {
+          throw new Error("Failed to fetch todos.");
+        }
+        return res.json();
+      })
+      .then((todos) => {
+        todos.forEach((todo) => {
+          let todoElement = document.createElement("div");
+          todoElement.classList.add("post");
+          todoElement.innerHTML = `
+            <p>${todo.id}</p>
+            <h3>${todo.title}</h3>
+            <p>${todo.completed ? "✅" : "❌"}</p>
+          `;
+          dropdownBox.appendChild(todoElement);
+        });
+      })
+      .catch(e => {
+        console.error("Todo fetch error:", e);
+      });
+  }
+}
