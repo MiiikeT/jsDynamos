@@ -2,7 +2,7 @@ function getUserInfo() {
   fetch('https://jsonplaceholder.typicode.com/users')
     .then(response => {
       if (!response.ok) {
-        throw new Error("Kunde inte hämta användare."); //ändrat till svenska
+        throw new Error("Unable to fetch users.");
       }
       return response.json();
     })
@@ -54,7 +54,7 @@ function fillDropdownWithPostsAndComments(userId, dropdownBox) {
   fetch(`https://jsonplaceholder.typicode.com/posts?userId=${userId}`)
     .then(response => {
       if (!response.ok) {
-        throw new Error('Kunde inte hämta posts.');
+        throw new Error('Unable to fetch posts.');
       }
       return response.json();
     })
@@ -73,19 +73,19 @@ function fillDropdownWithPostsAndComments(userId, dropdownBox) {
         fetch(`https://jsonplaceholder.typicode.com/comments?postId=${post.id}`)
           .then(response => {
             if (!response.ok) {
-              throw new Error('Kunde inte hämta kommentarer.');
+              throw new Error('Unable to fetch comments.');
             }
             return response.json();
           })
           .then(comments => {
             comments.forEach(comment => {
               let commentElement = document.createElement('p');
-              commentElement.textContent = `Kommentar: ${comment.body}`;
+              commentElement.textContent = `Comment: ${comment.body}`;
               postElement.appendChild(commentElement);
             });
           })
           .catch(e => {
-            console.error('Fel vid hämtning av kommentarer:', e);
+            console.error('Unable to fetch comments:', e);
           });
 
         dropdownBox.appendChild(postElement);
@@ -95,7 +95,7 @@ function fillDropdownWithPostsAndComments(userId, dropdownBox) {
       dropdownBox.style.display = 'block';
     })
     .catch(e => {
-      console.error('Fel vid hämtning av posts:', e);
+      console.error('Unable to fetch posts:', e);
     });
 }
 
@@ -103,7 +103,7 @@ function toggleDropdown(cardElement) {
   const dropdownBox = cardElement.querySelector('.dropdownBox'); // Lokal istället för global querySelector
 
   if (!dropdownBox) {
-    console.error('Dropdown-boxen hittades inte i kortet.');
+    console.error('Dropdown-box was not found.');
     return;
   }
 
@@ -142,7 +142,7 @@ function getToDos(cardElement, userId) {
     fetch(`https://jsonplaceholder.typicode.com/todos?userId=${userId}`)
       .then((res) => {
         if (!res.ok) {
-          throw new Error("Failed to fetch todos.");
+          throw new Error("Unable to fetch todos.");
         }
         return res.json();
       })
