@@ -368,8 +368,26 @@ footer p {
         width: 30%;
     }
 
+/* Mobile userCard */
+.userList {
+    display: flex;
+    flex-direction: column;
+}
+.userImg-container {
+    display: none;
+}
+.onClickInfo {
+    display: none;
+}
+.userCard {
+    min-height: unset;
+    height: 100px;
+    width: 90%;
+    
+}
+/* /Mobile userCard */
 
-    footer {
+footer {
         font-size: 16px;
         gap: 5px;
         margin-top: 10px;
