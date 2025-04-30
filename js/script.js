@@ -28,7 +28,7 @@ function getUserInfo() {
           this.querySelector(".onClickInfo").innerHTML = `
               <div class="buttonContainer">
                 <button class="cardButton" onclick="toggleDropdown(this.closest('.userCard'))">Post</button>
-                <button class="cardButton" onclick="getToDos()">ToDo</button>
+                <button class="cardButton" id="todo" onclick="getToDos(this.closest('.userCard'), ${user.id})">ToDo</button>
               </div>
               <div class="userInfo">
                 <p class="userUserName">${user.username}</p>
