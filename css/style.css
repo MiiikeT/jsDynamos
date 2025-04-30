@@ -37,14 +37,14 @@ body {
     align-items: center;
     font-family: BebasNeue,  Arial, Helvetica, sans-serif;
     background-image: url('/images/bg1.jpg');
-    top: 0;
-    width: auto; 
-    height: 100vw; 
-    z-index: -1;  
-    background-size:100%; 
-    position:static;
-    background-position:center;
-    background-repeat: repeat-y;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    min-height: 100vh;
+}
+
+body background-image {
+    transition: width 0.4s ease-in-out;
 }
 
 h1 {
@@ -99,7 +99,7 @@ header {
 
 
 .logoImage {
-width: 15%;
+width: 25vh; 
 }
 
 .userVisual {
@@ -341,12 +341,8 @@ footer p {
     font-size: 16px;
 }
 
-@media only screen and (max-width: 480px) {
 
-    body {
-        background-image: url('/images/bg2.jpg');
-        height: 300vh;
-    }
+@media only screen and (max-width: 480px) {
 
     h1 {
         font-size: 30px;
@@ -371,12 +367,6 @@ footer p {
     header {
         margin-bottom: 10px;
     }
-
-    .logoImage {
-        padding: 2px;
-        width: 30%;
-    }
-
 
     footer {
         font-size: 16px;
