@@ -36,15 +36,8 @@ body {
     flex-direction: column;
     align-items: center;
     font-family: BebasNeue,  Arial, Helvetica, sans-serif;
-    background-image: url('/images/bg1.jpg');
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-    min-height: 100vh;
-}
-
-body background-image {
-    transition: width 0.4s ease-in-out;
+    background: var(--accent-color);
+    background: linear-gradient(180deg,rgba(147, 125, 171, 1) 0%, rgba(164, 117, 137, 1) 14%, rgba(171, 108, 108, 1) 28%, rgba(178, 129, 129, 1) 44%, rgba(222, 171, 171, 1) 59%, rgba(147, 125, 171, 1) 73%, rgba(164, 117, 137, 1) 88%, rgba(125, 61, 61, 1) 100%);
 }
 
 h1 {
