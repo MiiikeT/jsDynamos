@@ -101,11 +101,6 @@ width: 25vh;
     margin: 10px;
 }
 
-a:hover {
-    text-decoration: underline;
-    color: var(--accent-color);
-}
-
 .userImg-container {
     background-color: #D9D9D9;
     border-radius: 50%;
@@ -337,6 +332,7 @@ footer p {
 
 @media only screen and (max-width: 480px) {
 
+
     h1 {
         font-size: 30px;
         line-height: 1.067;
@@ -361,7 +357,44 @@ footer p {
         margin-bottom: 10px;
     }
 
-    footer {
+    .logoImage {
+        padding: 2px;
+        width: 30%;
+    }
+  
+/* Mobile userCard */
+.userList {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+.userVisual{
+    display: flex;
+    align-items: baseline;
+}
+
+.userImg-container {
+    display: none;
+}
+.userCard {
+    min-height: 90px;
+    width: 90%;
+    display: flex;
+    flex-direction: column;
+    
+}
+
+.onClickInfo  {
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: space-between;
+}
+.dropdownBox{
+    grid-row: 3 / 4;
+}
+/* /Mobile userCard */
+
+footer {
         font-size: 16px;
         gap: 5px;
         margin-top: 10px;
