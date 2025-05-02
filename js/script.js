@@ -17,8 +17,8 @@ function getUserInfo() {
         userCard.innerHTML = `
           <div class="userVisual">
             <div class="userImg-container"></div>
+            <p class="userId">${user.id}. </p>
             <p class="userName">${user.name}</p>
-            <p class="userId">${user.id}</p>
           </div>
           <div class="onClickInfo"></div>
           <div class="dropdownBox"></div>

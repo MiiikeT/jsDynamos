@@ -382,17 +382,33 @@ footer p {
     display: flex;
     flex-direction: column;
 }
+.userVisual{
+    grid-row: 1 / 2;
+    display: flex;
+    align-items: baseline;
+}
+
 .userImg-container {
     display: none;
 }
-.onClickInfo {
-    display: none;
-}
 .userCard {
-    min-height: unset;
-    height: 100px;
+    min-height: 90px;
     width: 90%;
+    display: grid;
+    grid-template-rows: 20% auto auto;
+    grid-template-columns: 1fr 1fr;
     
+}
+
+.onClickInfo  {
+    grid-row: 2 / 3;
+    grid-column: 1 / 3;
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: space-between;
+}
+.dropdownBox{
+    grid-row: 3 / 4;
 }
 /* /Mobile userCard */
 
