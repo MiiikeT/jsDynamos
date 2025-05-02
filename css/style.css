@@ -36,15 +36,8 @@ body {
     flex-direction: column;
     align-items: center;
     font-family: BebasNeue,  Arial, Helvetica, sans-serif;
-    background-image: url('/images/bg1.jpg');
-    top: 0;
-    width: auto; 
-    height: 100vw; 
-    z-index: -1;  
-    background-size:100%; 
-    position:static;
-    background-position:center;
-    background-repeat: repeat-y;
+    background: var(--accent-color);
+    background: linear-gradient(180deg,rgba(147, 125, 171, 1) 0%, rgba(164, 117, 137, 1) 14%, rgba(171, 108, 108, 1) 28%, rgba(178, 129, 129, 1) 44%, rgba(222, 171, 171, 1) 59%, rgba(147, 125, 171, 1) 73%, rgba(164, 117, 137, 1) 88%, rgba(125, 61, 61, 1) 100%);
 }
 
 h1 {
@@ -99,18 +92,13 @@ header {
 
 
 .logoImage {
-width: 15%;
+width: 25vh; 
 }
 
 .userVisual {
     grid-row: 1;
     grid-column: 1;
     margin: 10px;
-}
-
-a:hover {
-    text-decoration: underline;
-    color: var(--accent-color);
 }
 
 .userImg-container {
@@ -341,13 +329,9 @@ footer p {
     font-size: 16px;
 }
 
+
 @media only screen and (max-width: 480px) {
 
-    body {
-        background-image: url('/images/bg2.jpg');
-        height: 300vh;
-        /* width: 100%; */
-    }
 
     h1 {
         font-size: 30px;
@@ -377,6 +361,7 @@ footer p {
         padding: 2px;
         width: 30%;
     }
+  
 /* Mobile userCard */
 .userList {
     display: flex;
