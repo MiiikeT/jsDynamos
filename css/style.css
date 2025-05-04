@@ -169,6 +169,9 @@ width: 25vh;
     margin: 10px;
 
 }
+.dot {
+    display: none;
+}
 
 .userImg-container {
     background-color: #D9D9D9;
@@ -371,6 +374,10 @@ footer p {
 .userVisual{
     display: flex;
     align-items: baseline;
+}
+
+.dot {
+    display: block;
 }
 
 .userImg-container {
